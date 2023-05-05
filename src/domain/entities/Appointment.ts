@@ -25,11 +25,20 @@ export class Appointment {
       throw new Error("Date cannot be in the future");
     }
 
-    return {
+    return new Appointment({
       id: props.id,
       date: props.date,
       email: props.email,
       createdAt: new Date().toISOString(),
+    });
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      date: this.date,
+      email: this.email,
+      createdAt: this.createdAt,
     };
   }
 }

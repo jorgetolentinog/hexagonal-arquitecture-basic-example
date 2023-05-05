@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 app.get("/", async (_, res) => {
   await appointmentCreator.execute({
-    date: new Date().toISOString(),
+    date: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
     email: "hello@world.com",
   });
 
