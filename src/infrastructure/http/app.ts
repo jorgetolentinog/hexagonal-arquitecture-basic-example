@@ -1,9 +1,17 @@
 import express from "express";
+import bodyParser from "body-parser";
+import { appointmentCreator } from "../injector";
 
 const app = express();
+app.use(bodyParser.json());
 
-app.get("/", (_, res) => {
-  res.send("Hello world!");
+app.get("/", async (_, res) => {
+  await appointmentCreator.execute({
+    date: new Date().toISOString(),
+    email: "hello@world.com",
+  });
+
+  res.send("Ok");
 });
 
 export { app };
