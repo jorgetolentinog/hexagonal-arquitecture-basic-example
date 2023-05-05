@@ -1,0 +1,8 @@
+# node
+node_modules
+
+# ignore all hidden files
+.*
+# except
+!.gitignore
+!.editorconfig
