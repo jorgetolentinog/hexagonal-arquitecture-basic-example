@@ -4,10 +4,16 @@ export class Appointment {
   email: string;
   createdAt: string;
 
-  constructor(props: { id: string; date: string; email: string }) {
+  constructor(props: {
+    id: string;
+    date: string;
+    email: string;
+    createdAt: string;
+  }) {
     this.id = props.id;
     this.date = props.date;
     this.email = props.email;
+    this.createdAt = props.createdAt;
   }
 
   static create(props: {
@@ -15,7 +21,7 @@ export class Appointment {
     date: string;
     email: string;
   }): Appointment {
-    if (props.date >= new Date().toISOString()) {
+    if (props.date < new Date().toISOString()) {
       throw new Error("Date cannot be in the future");
     }
 
