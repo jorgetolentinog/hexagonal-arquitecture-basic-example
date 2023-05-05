@@ -7,12 +7,12 @@ import { AppointmentRepository } from "../../src/domain/repositories/Appointment
 test("Deberia crear una reserva", async () => {
   // Arrange
   const uniqueId = mock<UniqueId>();
-  const bookingRepository = mock<AppointmentRepository>();
+  const appointmentRepository = mock<AppointmentRepository>();
   const mailer = mock<Mailer>();
 
   uniqueId.generate.mockReturnValue("123");
   const usecase = new AppointmentCreator({
-    bookingRepository,
+    appointmentRepository,
     uniqueId,
     mailer,
   });
@@ -26,7 +26,7 @@ test("Deberia crear una reserva", async () => {
 
   // Assert
   expect(uniqueId.generate).toHaveBeenCalled();
-  expect(bookingRepository.save).toHaveBeenCalledWith(
+  expect(appointmentRepository.save).toHaveBeenCalledWith(
     expect.objectContaining({
       id: "123",
       date: date,
@@ -43,12 +43,12 @@ test("Deberia crear una reserva", async () => {
 test("Deberia lanzar error de fecha incorrecta", async () => {
   // Arrange
   const uniqueId = mock<UniqueId>();
-  const bookingRepository = mock<AppointmentRepository>();
+  const appointmentRepository = mock<AppointmentRepository>();
   const mailer = mock<Mailer>();
 
   uniqueId.generate.mockReturnValue("123");
   const usecase = new AppointmentCreator({
-    bookingRepository,
+    appointmentRepository,
     uniqueId,
     mailer,
   });

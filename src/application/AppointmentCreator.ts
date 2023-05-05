@@ -4,16 +4,16 @@ import { Mailer } from "../domain/ports/Mailer";
 import { Appointment } from "../domain/entities/Appointment";
 
 export class AppointmentCreator {
-  private _bookingRepository: AppointmentRepository;
+  private _appointmentRepository: AppointmentRepository;
   private _uniqueId: UniqueId;
   private _mailer: Mailer;
 
   constructor(props: {
-    bookingRepository: AppointmentRepository;
+    appointmentRepository: AppointmentRepository;
     uniqueId: UniqueId;
     mailer: Mailer;
   }) {
-    this._bookingRepository = props.bookingRepository;
+    this._appointmentRepository = props.appointmentRepository;
     this._uniqueId = props.uniqueId;
     this._mailer = props.mailer;
   }
@@ -25,7 +25,7 @@ export class AppointmentCreator {
       email: props.email,
     });
 
-    await this._bookingRepository.save(appointment);
+    await this._appointmentRepository.save(appointment);
 
     await this._mailer.send({
       to: appointment.email,
